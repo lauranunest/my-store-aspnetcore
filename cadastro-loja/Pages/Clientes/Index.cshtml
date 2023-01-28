@@ -1,0 +1,38 @@
+﻿@page
+@model cadastro_loja.Pages.Clientes.IndexModel
+@{
+}
+
+<br>
+<h2>Lista de Clientes</h2>
+<a class='btn btn-outline-primary btn-sm' href='/Clientes/Criar'>Novo Cliente</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Endereço</th>
+            <th>Atualização</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.clientesLista)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.nome</td>
+                <td>@item.email</td>
+                <td>@item.celular</td>
+                <td>@item.endereco</td>
+                <td>@item.atualizacao</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Clientes/Editar?id=@item.id">Editar</a>
+                    <a class="btn btn-danger btn-sm" href="/Clientes/Deletar?id=@item.id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

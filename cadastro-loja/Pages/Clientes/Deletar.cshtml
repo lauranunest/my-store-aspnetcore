@@ -1,0 +1,31 @@
+﻿@page
+@using System.Data.SqlClient;
+
+
+@{
+    try
+    {
+        String id = Request.Query["id"];
+
+        String stringConexao = "Data Source=.\\SQLEXPRESS2022;Initial Catalog=loja;Integrated Security=True;TrustServerCertificate=True";
+
+        using (SqlConnection conexao = new SqlConnection(stringConexao))
+        {
+            conexao.Open();
+            String sql = "DELETE FROM clientes WHERE id=@id";
+
+            using (SqlCommand comando = new SqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@id", id);
+
+                comando.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+
+    }
+
+    Response.Redirect("/Clientes/Index");
+}
